@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Store</title>
+    <style>
+        /* Add your CSS styles here */
+        /* Reset the default margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set the font for the entire page */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Style the header */
+header {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Style the navigation menu */
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav li {
+    margin-left: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Style the hero section */
+#hero {
+    background-image: url(/sekiller/books.jpg);
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: #f5fafa;
+    padding: 100px 20px;
+    font-family: 'Tahoma';
+}
+
+#hero h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background-color: #fff;
+    color: #333;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ddd;
+}
+
+/* Style the featured books section */
+#featured-books {
+    padding: 50px 20px;
+}
+
+#featured-books h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.book {
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    /* background-image: url(/5570863.jpg); */
+
+}
+
+/* .icmal{
+    text-align: center;
+} */
+
+.book img {
+    margin-bottom: 10px;
+}
+
+
+.book h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.book p {
+    margin-bottom: 10px;
+}
+
+.book button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.book button:hover {
+    background-color: #444;
+}
+
+/* Style the best sellers section */
+#best-sellers {
+    background-color: #f7f7f7;
+    padding: 50px 20px;
+}
+
+#best-sellers h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+/* Style the footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+.log , .reg{
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  font-weight: 600;
+  margin: 0 10px;
+  width: 200px;
+  padding: 10px 0;
+  box-shadow: 0 0 20px rgba(104, 85, 224, 0.2);
+  transition: 0.4s;
+}
+
+.reg {
+  color: white;
+  background-color: rgba(104, 85, 224, 1);
+  border: 1px solid rgba(104, 85, 224, 1);
+}
+
+.log {
+  color: rgba(255, 255, 255, 1); 
+  background-color: rgb(104, 85, 224);
+  /* border: 1px solid rgba(104, 85, 224, 1); */
+}
+
+button:hover .log,.reg {
+  color: white;
+  /* width:; */
+  box-shadow: 0 0 20px rgba(104, 85, 224, 0.6);
+  background-color: rgba(104, 85, 224, 1);
+}
+
+    </style>
+
+
+
+
+
+    <!-- <script>
+        // Define variables for the navigation menu and mobile menu button
+const nav = document.querySelector('nav ul');
+const mobileMenuButton = document.querySelector('#mobile-menu-button');
+
+// Toggle the mobile menu when the mobile menu button is clicked
+mobileMenuButton.addEventListener('click', () => {
+  nav.classList.toggle('show');
+});
+
+// Define variables for the featured books section and best sellers section
+const featuredBooksSection = document.querySelector('#featured-books');
+const bestSellersSection = document.querySelector('#best-sellers');
+
+// Create an array of featured books and best sellers
+const featuredBooks = [
+  {
+    title: 'The Great Gatsby',
+    author: 'F. Scott Fitzgerald',
+    image: 'https://via.placeholder.com/200x300',
+    price: '$12.99'
+  },
+  {
+    title: 'To Kill a Mockingbird',
+    author: 'Harper Lee',
+    image: 'https://via.placeholder.com/200x300',
+    price: '$14.99'
+  },
+  {
+    title: '1984',
+    author: 'George Orwell',
+    image: 'https://via.placeholder.com/200x300',
+    price: '$10.99'
+  }
+];
+
+const bestSellers = [
+  {
+    title: 'The Catcher in the Rye',
+    author: 'J.D. Salinger',
+    image: 'https://via.placeholder.com/200x300',
+    price: '$11.99'
+  },
+  {
+    title: 'To Kill a Mockingbird',
+    author: 'Harper Lee',
+    image: 'https://via.placeholder.com/200x300',
+    price: '$14.99'
+  },
+  {
+    title: 'Pride and Prejudice',
+    author: 'Jane Austen',
+    image: 'https://via.placeholder.com/200x300',
+    price: '$9.99'
+  }
+];
+
+// Render the featured books and best sellers in their respective sections
+function renderBooks(books, section) {
+  // Create a variable to hold the HTML for the books
+  let bookHTML = '';
+
+  // Loop through the books array and create HTML for each book
+  for (let book of books) {
+    bookHTML += `
+      <div class="book">
+        <img src="${book.image}" alt="${book.title}">
+        <h3>${book.title}</h3>
+        <p>${book.author}</p>
+        <p>${book.price}</p>
+        <button>Add to Cart</button>
+      </div>
+    `;
+  }
+
+  // Set the HTML of the section to the book HTML
+  section.innerHTML = bookHTML;
+}
+
+// Call the renderBooks function to render the featured books and best sellers
+renderBooks(featuredBooks, featuredBooksSection);
+renderBooks(bestSellers, bestSellersSection);
+
+    </script> -->
+</head>
+
+
+
+
+
+<body>
+    <header>
+        <h1>Moonlight Book Store</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Əsas</a></li>
+                <li><a href="Kitablar.html">Kitablar</a></li>
+                <li><a href="Sebet.html">Səbət</a></li>
+                <li><a href="Elaqe.html">Əlaqə</a></li>
+                <li><button class="log"> <a href="login.html"> Login </a></button></li>
+                <li><button class="reg"> <a href="signup.html"> Sign up </a></button></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h2>Xoş gəlmisiniz</h2>
+        <a href="#" class="btn">Browse Books</a>
+    </section>
+
+    <section id="featured-books">
+        <h2>Önə Çıxanlar</h2>
+        <div class="book">
+            <img src="/sekiller/kurk-mantolu-madonna-2.jpg" alt="Book Cover">
+            <h3>Kürk Mantolu Madonna</h3>
+            <p>Sabahattin Ali</p>
+            <p>Qiymət: 3.99 AZN</p>
+            <button>Səbətə At</button>
+            <div class="icmal">
+                <p>Kədərli bir eşq hekayəsi olan Xəz Paltolu Madonnanın iki hekayədən ibarət povesti var. Birinci hekayədə Rasim adlı obraz iş tapır və Raif Əfəndi obrazı ilə tanış olur. İkinci hekayədə isə Raif Əfəndinin heç kimə danışa bilmədiyi eşq hekayəsi önə çıxır.</p>
+            </div>
+        </div>
+        <div class="book">
+            <img src="/sekiller/2-2.jpg" alt="Book Cover">
+            <h3>1984</h3>
+            <p>George Orwell</p>
+            <p>Qiymət: 11.99 AZN</p>
+            <button>Səbətə At</button>
+        </div>
+        <div class="book">
+            <img src="/sekiller/seker-portakali-2.jpg" alt="Book Cover">
+            <h3>Şeker Portakalı</h3>
+            <p>José Mauro de Vasconcelos</p>
+            <p>Qiymət: 9.99 AZN</p>
+            <button>Səbətə At</button>
+        </div>
+        <div class="book">
+            <img src="/sekiller/Robert-Kiosaki-Uz-Qapaq-300x400-500x500-2.jpg" alt="Book Cover">
+            <h3>Varlı Ata , Kasıb Ata</h3>
+            <p>Robert Kiosaki</p>
+            <p>Qiymət: 9.99 AZN</p>
+            <button>Səbətə At</button>
+        </div>
+        <div class="book">
+            <img src="/sekiller/suc_ve_ceza-2.jpg" alt="Book Cover">
+            <h3>Suç Və Cəza</h3>
+            <p>Lev Tolstoy</p>
+            <p>Qiymət: 5.99 AZN</p>
+            <button>Səbətə At</button>
+        </div>
+    </section>
+
+    <section id="best-sellers">
+        <h2>Ən Çox Satılanlar</h2>
+        <div class="book">
+            <img src="/sekiller/9091931570226-2.jpg" alt="Book Cover">
+            <h3>Küçük Prens</h3>
+            <p>Antuan de Sent-Ekzüperi</p>
+            <p>Qiymət: 6.99 AZN</p>
+            <button>Səbətə At</button>
+        </div>
+        <div class="book">
+            <img src="/sekiller/c5c36715501c4b826d39211f7bee491f-2.jpg" alt="Book Cover">
+            <h3>Fesleğen</h3>
+            <p>Hikmet Anıl Öztekin</p>
+            <p>Qiymət: 9.99 AZN</p>
+            <button>Səbətə At</button>
+        </div>
+        <div class="book">
+            <img src="/sekiller/format-webp-2.jpeg" alt="Book Cover">
+            <h3>Rome ve Juliet</h3>
+            <p>William Shakespeare</p>
+            <p>Qiymət: 7.99 AZN</p>
+            <button>Səbətə At</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Book Store.Bütün haqqlar qorunur.
+            Müəlliflər: Nicat Abdullayev,Zamin Sultanlı,Murad Şükürov. </p>
+    </footer>
+</body>
+</html>
